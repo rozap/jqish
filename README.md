@@ -1,7 +1,7 @@
 # Jqish
 
 Usage
-```
+```elixir
 Jqish.run(%{"foo" => %{"bar" => [1, 2, 3, 4]}}, ".foo.bar.[2]")
 {:ok, 3}
 ```
