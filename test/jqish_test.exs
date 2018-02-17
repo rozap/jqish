@@ -8,6 +8,7 @@ defmodule JqishTest do
     test "simple identifier parsing" do
       assert ok(Jqish.parse(".foo")) == ["foo"]
       assert ok(Jqish.parse(".foo.bar")) == ["foo", "bar"]
+      assert ok(Jqish.parse(".foo.[\"b-a-r$\"]")) == ["foo", "b-a-r$"]
     end
 
     test "simple index parsing" do
