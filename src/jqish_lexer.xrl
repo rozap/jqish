@@ -2,20 +2,28 @@ Definitions.
 
 INT        = [0-9]+
 IDENTIFIER = [a-zA-Z_]+
-ANYTHING = "[^"\\]*(\\.[^"\\]*)*"
+STRING = "[^"\\]*(\\.[^"\\]*)*"
 WHITESPACE = [\s\t\n\r]+
 OPTIONAL = \?
 ITERATOR = \[\]
+COMPOSITION = \|
+OPERATOR = (==|>|<|>=|<=|!=)
+FUNCTION = (map|select)
 
 Rules.
 
+{FUNCTION}              : {token, {function, TokenLine, to_binary(TokenChars)}}.
 {INT}                   : {token, {int, TokenLine, TokenChars}}.
 {IDENTIFIER}            : {token, {identifier, TokenLine, to_binary(TokenChars)}}.
-{ANYTHING}              : {token, {identifier, TokenLine, to_binary(parse_string(TokenChars))}}.
+{STRING}                : {token, {string, TokenLine, to_binary(parse_string(TokenChars))}}.
 {OPTIONAL}              : {token, {'?', TokenLine}}.
 {ITERATOR}              : {token, {iterator, TokenLine}}.
+{COMPOSITION}           : {token, {composition, TokenLine}}.
+{OPERATOR}              : {token, {operator, TokenLine, to_binary(TokenChars)}}.
 \[                      : {token, {'[', TokenLine}}.
 \]                      : {token, {']', TokenLine}}.
+\(                      : {token, {'(', TokenLine}}.
+\)                      : {token, {')', TokenLine}}.
 \.                      : {token, {'.', TokenLine}}.
 :                       : {token, {':', TokenLine}}.
 {WHITESPACE}            : skip_token.
