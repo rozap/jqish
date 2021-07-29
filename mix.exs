@@ -4,8 +4,8 @@ defmodule Jqish.Mixfile do
   def project do
     [
       app: :jqish,
-      version: "0.2.0",
-      elixir: "~> 1.5",
+      version: "0.2.1",
+      elixir: "~> 1.12",
       package: package(),
       description: description(),
       start_permanent: Mix.env == :prod,

@@ -9,6 +9,8 @@ defmodule JqishTest do
       {:error, error} = Jqish.run(%{"foo" => 1}, ".foo.bar")
       assert error.target == 1
       assert error.path == "bar"
+
+      assert Jqish.run(%{"foo" => 1}, ".this.path.does.not.exist") == {:error, %Jqish.UnexpectedValueError{path: "path", target: nil}}
     end
 
     test "simple identifers" do

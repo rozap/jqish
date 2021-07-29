@@ -40,6 +40,7 @@ defmodule Jqish do
     end
   end
 
+  defp e({:error, _} = err, _), do: err
 
   defp e(t, {:compose, left, right}) do
     case e(t, left) do
